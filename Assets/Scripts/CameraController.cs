@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 	public GameObject player;
+	public bool rotates;
 	private Vector3 offset;
 
 	// Use this for initialization
@@ -20,6 +21,11 @@ public class CameraController : MonoBehaviour {
 	void LateUpdate () { //runs every frame, but only after everything has been updated in Update()
 		if (!player)
 			return;
+
+		if (rotates) {
+			transform.LookAt (player.transform.position);
+			return;
+		}
 
 		transform.position = player.transform.position + offset;
 	}
